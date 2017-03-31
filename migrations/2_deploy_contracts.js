@@ -1,4 +1,11 @@
+var Arbitrable = artifacts.require("./Arbitrated/Arbitrable.sol");
+var ArbitratedBuy = artifacts.require("./Tokens/ArbitratedBuy.sol");
+var ArbitratedBuy = artifacts.require("./Tokens/ArbitratedBuyDeposit.sol");
+
 var Token = artifacts.require("./Tokens/Token.sol");
+
+var BuyableCourt = artifacts.require("./BuyableCourt.sol");
+var Court = artifacts.require("./Court.sol");
 //var Web3 = require('../node_modules/web3');
 
 module.exports = function(deployer) {

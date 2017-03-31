@@ -356,7 +356,7 @@ contract Court is Token {
             uint256 stake=0;
             uint256 lostStake=0;
             uint256 wonStake=0;
-            Vote vote;
+            Vote memory vote;
 
             for (j=0;j<dispute.voters[dispute.voters.length-1].length;++j){ // Compute the parts
                 vote=dispute.voters[dispute.voters.length-1][j];

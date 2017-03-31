@@ -12,10 +12,12 @@ The funds are released to the buyer if:
 -The court rule in favor of the buyer
 -The seller accept to refund the buyer
 
-This contract only handle paiement in ether. (Support for tokens is planed for futur versions)
+This contract only handle payment in ether. (Support for tokens is planed for futur versions)
 */
 
 pragma solidity ^0.4.6;
+
+import "./TwoPartyArbitrable.sol";
 
 contract arbitratedBuy is TwoPartyArbitrable {
     address public buyer;
