@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import request from 'superagent'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
-import Kleroterion from '../../build/contracts/Kleroterion.json'
+import Court from '../../build/contracts/Court.json'
 
 import '../www/styles/Kleroterion.scss'
 
@@ -15,15 +15,6 @@ class Kleroterion extends Component {
     web3: false,
     balance: 0,
     addressContract: null,
-    delegate: null,
-    metaContract: null,
-    accounts: null,
-    askMembership: null,
-    web3RPC: null,
-    name: '',
-    valueDeposit: 0,
-    dataDeposit: '',
-    proposals: [],
   }
 
   componentDidMount() {
@@ -56,7 +47,7 @@ class Kleroterion extends Component {
     }, 1000)
   }
 
-  getProposals = contract => {
+  getDispute = contract => {
     this.state.metaContract.at(this.state.addressContract)
       .then(contract => contract.nbProposalsFund())
       .then(result => [...new Array(result.toNumber()).keys()])
@@ -74,29 +65,6 @@ class Kleroterion extends Component {
       <div id="container">
         <h1>Kleroterion</h1>
         <p>Balance : {this.state.balance}</p>
-        <p>
-            Set Delegate <input type="text" onChange={this.handleChange('delegate')} />
-            <button onClick={this.setDelegate}>Add address</button>
-        </p>
-        <p>
-            Ask Membership <input type="text" onChange={this.handleChange('askMembership')} />
-            <button onClick={this.askMembership}>Ask membership</button>
-        </p>
-        <p>
-          Add proposal&nbsp;
-          <input type="text" onChange={this.handleChange('name')} placeholder="Name of the proposition (hex)" />
-          <input type="text" onChange={this.handleChangeRequestAmount} placeholder="Requested amount (Wei)" />
-          <input type="text" onChange={this.handleChangeDescription} placeholder="Link IPFS" />
-          <button onClick={this.addProposal}>Submit add proposal</button>
-        </p>
-        <p>
-          Proposals
-        </p>
-        <ul>
-          {this.state.proposals.map(
-            (obj, index) => <li key={index}>{obj.toString()}</li>
-          )}
-        </ul>
       </div>
     )
   }
