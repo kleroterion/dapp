@@ -1,5 +1,5 @@
-var Kleroterion = artifacts.require("./Kleroterion.sol");
+var Court = artifacts.require("./Court.sol");
 
-contract('Kleroterion', (accounts) => {
+contract('Court', (accounts) => {
   it("test kleroterion", () => {})
 })
