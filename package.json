@@ -25,7 +25,8 @@
     "style-loader": "^0.13.1",
     "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-shell-plugin": "^0.5.0"
   },
   "dependencies": {
     "axios": "^0.15.3",

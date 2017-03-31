@@ -3,6 +3,7 @@ const path = require('path');
 const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const config = {
   // Entry points to the project
@@ -34,6 +35,10 @@ const config = {
     new TransferWebpackPlugin([
       {from: 'www'},
     ], path.resolve(__dirname, 'src')),
+    new WebpackShellPlugin({
+      onBuildStart: ['echo "Starting"'],
+      onBuildEnd: ['echo "Starting"']
+    }),
   ],
   module: {
     loaders: [

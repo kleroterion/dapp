@@ -3,6 +3,7 @@ const path = require('path');
 const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const config = {
   entry: [path.join(__dirname, '/src/app/app.js')],
@@ -33,14 +34,26 @@ const config = {
     new TransferWebpackPlugin([
       {from: 'www'},
     ], path.resolve(__dirname, 'src')),
+    new WebpackShellPlugin({
+      onBuildStart: [
+        'echo "install truffle"',
+      ],
+      onBuildEnd: ['echo "end"']
+    }),
   ],
   module: {
     loaders: [
       {
+        test: /\.json$/,
+        loader: 'json',
+      }, {
         test: /\.js$/, // All .js files
         loaders: ['babel-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath],
-      },
+      }, {
+        test: /\.scss$/, // All .scss files
+        loaders: ['style', 'css', 'sass'],
+      }
     ],
   },
 };
