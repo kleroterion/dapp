@@ -15,6 +15,7 @@ class Kleroterion extends Component {
     web3: false,
     balance: 0,
     addressContract: null,
+    disputes: null,
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class Kleroterion extends Component {
       if (typeof web3 !== 'undefined') {
         // web3 = new Web3(web3.currentProvider);
         this.setState({web3: true})
-        let meta = contract(Kleroterion)
+        let meta = contract(Court)
         this.setState({metaContract: meta})
         let provider = new Web3.providers.HttpProvider(`http://${TESTRPC_HOST}:${TESTRPC_PORT}`)
         let metaCoinBalance = 0
@@ -38,6 +39,7 @@ class Kleroterion extends Component {
           return meta.deployed()
             .then(contract => {
               this.setState({addressContract: contract.address})
+              console.log('adress court contract', contract.address)
             })
             .catch(err => console.error(err))
         })
@@ -47,14 +49,10 @@ class Kleroterion extends Component {
     }, 1000)
   }
 
-  getDispute = contract => {
+  getDisputes = contract => {
     this.state.metaContract.at(this.state.addressContract)
-      .then(contract => contract.nbProposalsFund())
-      .then(result => [...new Array(result.toNumber()).keys()])
-      .then(range => (
-        Promise.all(range.map(i => contract.proposals(i)))
-          .then(results => this.setState({ proposals: results }))
-      ))
+      .then(contract => contract.disputes())
+      .then(result => console.log(result) || this.setState({ disputes: result }))
       .catch(err => console.error(err))
   }
 
@@ -65,6 +63,7 @@ class Kleroterion extends Component {
       <div id="container">
         <h1>Kleroterion</h1>
         <p>Balance : {this.state.balance}</p>
+
       </div>
     )
   }
