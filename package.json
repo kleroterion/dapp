@@ -1,10 +1,10 @@
 {
-  "name": "abie",
-  "version": "0.16.4",
+  "name": "kleroterion",
+  "version": "0.1.0",
   "description": "kleroterion",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hackerhouseparis/abie.git"
+    "url": "https://github.com/kleroterion/dapp.git"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",

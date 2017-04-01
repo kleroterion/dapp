@@ -35,9 +35,7 @@ const config = {
       {from: 'www'},
     ], path.resolve(__dirname, 'src')),
     new WebpackShellPlugin({
-      onBuildStart: [
-        'echo "install truffle"',
-      ],
+      onBuildStart: [],
       onBuildEnd: ['echo "end"']
     }),
   ],
