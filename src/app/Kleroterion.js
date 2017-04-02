@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import request from 'superagent'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
-import CourtBuyable from '../../build/contracts/BuyableCourt.json'
 
 import '../www/styles/Kleroterion.scss'
 
