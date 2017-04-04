@@ -4,7 +4,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import { Router, Route, hashHistory } from 'react-router'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Kleroterion from './Kleroterion'
+import Home from './Home'
+import ArbitrateContract from './ArbitrateContract'
 
 import '../www/styles/main.scss'
 
@@ -16,7 +17,8 @@ injectTapEventPlugin();
 render((
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <Router history={hashHistory}>
-      <Route path="/" component={Kleroterion}/>
+      <Route path="/" component={Home}/>
+      <Route path="/arbitrate-contract/:address" component={ArbitrateContract}/>
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'))
