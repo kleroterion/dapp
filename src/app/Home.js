@@ -25,6 +25,7 @@ class Kleroterion extends Component {
     buyableCourtContract: null,
     disputes: [],
     minJuryToken: 0,
+    voteStatus: 'Not arbitrable',
   }
 
   componentDidMount() {
@@ -60,9 +61,21 @@ class Kleroterion extends Component {
       this.setState({nbDispute: err.toNumber()})
       console.log('nbDispute :', this.state.nbDispute)
       let disputes = [...new Array(err.toNumber()-1).keys()]
+      let hasVoted
       disputes.forEach(i => {
         this.getDispute(i+1, (res, errDispute) => {
           console.log('dispute', errDispute)
+          this.state.buyableCourtContract
+            .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
+            .getHasVoted(i+1, web3.eth.accounts[0], {from: web3.eth.accounts[0]}, (_, resHasVoted) => {
+              console.log('wf', resHasVoted.c[0])
+              if (resHasVoted.c[0] == errDispute[1].c[0]) {
+                hasVoted = true
+              } else {
+                hasVoted = false
+              }
+
+            })
           this.state.buyableCourtContract
             .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
             .minJuryToken((res, errMinJuryToken) => {
@@ -76,12 +89,14 @@ class Kleroterion extends Component {
                   {from: web3.eth.accounts[0]},
                   (res, errDisputeActive) => {
                     console.log('active dispute:', errDisputeActive.c[0])
+                    console.log('hasVoted', hasVoted)
                     this.setState(
                       {
                         disputes: [...this.state.disputes,
                         {
                           dispute: errDispute,
-                          active: errDisputeActive.c[0]
+                          active: errDisputeActive.c[0],
+                          hasVoted: hasVoted
                         }]
                       }
                     )
@@ -96,10 +111,6 @@ class Kleroterion extends Component {
   getDispute = (id, cb) => this.state.buyableCourtContract
     .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
     .disputes(id, {from: web3.eth.accounts[0]}, cb)// add dispute in state
-
-  getDisputeActive = (id, cb) => this.state.buyableCourtContract
-    .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
-    .disputes(id, {from: web3.eth.accounts[0]}, cb)
 
   getBalance = () =>
     this.state.buyableCourtContract
@@ -157,7 +168,17 @@ class Kleroterion extends Component {
                   <TableRowColumn>{obj.dispute[4].toNumber()}</TableRowColumn>
                   <TableRowColumn>{obj.dispute[5].toNumber()}</TableRowColumn>
                   <TableRowColumn>{obj.active ? 'true' : 'false'}</TableRowColumn>
-                  <TableRowColumn>{obj.active ? <Link to={'arbitrate-contract/' + (index + 1)}><RaisedButton label="Arbitrate" primary={true}/></Link> : <span>No</span>}</TableRowColumn>
+                  <TableRowColumn>
+                    { obj.active && !obj.hasVoted ? <Link to={'arbitrate-contract/' + (index + 1)}><RaisedButton label="Arbitrate" primary={true}/></Link>
+                      : <span></span>
+                    }
+                    { obj.active && obj.hasVoted ? <span>Voted</span>
+                      : <span></span>
+                    }
+                    { !obj.active ? <span>Not arbitrable</span>
+                      : <span></span>
+                    }
+                  </TableRowColumn>
                 </TableRow>
               )
           )}

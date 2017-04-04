@@ -60,7 +60,7 @@ class Kleroterion extends Component {
 
     this.state.buyableCourtContract
       .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
-      .arbitrate(this.props.params.disputeId, e.target.value, {from: web3.eth.accounts[0]}, (res, err) => {
+      .voteRuling(this.props.params.disputeId, e.target.value, {from: web3.eth.accounts[0]}, (res, err) => {
         if (err != undefined) {
           console.log('arbitrate', err)
           this.setState({arbitrateLoader: 2})
@@ -95,9 +95,11 @@ class Kleroterion extends Component {
         {this.state.arbitrateLoader === 1 ? <img src='https://hangmanwordgame.com/static/img/loading.gif' /> : <div></div>}
         {this.state.arbitrateLoader === 2 ?
           <p>
-            Merci pour votre arbitrage
+            Thanks for the arbitrate
             <br/>
-            <Link to='/'>Retour aux disputes</Link>
+            <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>
+              <Link to='/'></Link>
+            </RaisedButton>
           </p>
           : <div></div>
         }
