@@ -60,13 +60,13 @@ class Kleroterion extends Component {
           this.state.buyableCourtContract
             .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
             .minJuryToken((res, errMinJuryToken) => {
-              console.log('errMinJuryToken:', errMinJuryToken.toNumber())
+              console.log('errMinJuryToken:', errMinJuryToken)
               this.state.buyableCourtContract
                 .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
                 .drawnTokens(
                   web3.eth.accounts[0],
                   errDispute[3].c[0],
-                  2*Math.pow(errDispute[2].c[0]) * errMinJuryToken.toNumber(),
+                  Math.pow(errDispute[2].c[0], 2) * errMinJuryToken.toNumber(),
                   {from: web3.eth.accounts[0]},
                   (res, errDisputeActive) => {
                     console.log('active dispute:', errDisputeActive.c[0])
@@ -121,7 +121,7 @@ class Kleroterion extends Component {
           (obj, index) =>
             (
               <ul key={index}>
-                <li><Link to={'arbitrate-contract/12'}>Home</Link></li>
+                <li><Link to={'arbitrate-contract/' + (index + 1)}>Arbitrate</Link></li>
                 <li>address: {obj.dispute[0]}</li>
                 <li>session: {obj.dispute[1].toNumber()}</li>
                 <li>appeals: {obj.dispute[2].toNumber()}</li>

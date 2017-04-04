@@ -18,7 +18,7 @@ render((
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <Router history={hashHistory}>
       <Route path="/" component={Home}/>
-      <Route path="/arbitrate-contract/:address" component={ArbitrateContract}/>
+      <Route path="/arbitrate-contract/:disputeId" component={ArbitrateContract}/>
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'))
