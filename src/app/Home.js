@@ -3,6 +3,12 @@ import request from 'superagent'
 import { default as Web3 } from 'web3'
 import { default as contract} from 'truffle-contract'
 import { Link } from 'react-router'
+import AppBar from 'material-ui/AppBar'
+import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+
 
 
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
@@ -112,26 +118,52 @@ class Kleroterion extends Component {
   render() {
     return (
       <div id="container">
-        <h1>Home</h1>
-        <p>Balance : {this.state.balance}</p>
-        <div>
+        <AppBar
+          title={<Link to='/' style={{color: '#fff', textDecoration: 'none'}}>KLEROTERION</Link>}
+          showMenuIconButton= {false}
+          iconElementRight={<span><i>Balance :</i> {this.state.balance}</span>}
+          iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
+        />
 
-        </div>
-        {this.state.disputes.map(
-          (obj, index) =>
-            (
-              <ul key={index}>
-                <li><Link to={'arbitrate-contract/' + (index + 1)}>Arbitrate</Link></li>
-                <li>address: {obj.dispute[0]}</li>
-                <li>session: {obj.dispute[1].toNumber()}</li>
-                <li>appeals: {obj.dispute[2].toNumber()}</li>
-                <li>r: {obj.dispute[3].toNumber()}</li>
-                <li>vote A: {obj.dispute[4].toNumber()}</li>
-                <li>vote B {obj.dispute[5].toNumber()}</li>
-                <li>active: {obj.active ? 'true' : 'false'}</li>
-              </ul>
-            )
-        )}
+        <Table>
+          <TableHeader
+            displaySelectAll={false}
+            enableSelectAll={false}
+            adjustForCheckbox={false}
+          >
+            <TableRow>
+              <TableHeaderColumn>Adress</TableHeaderColumn>
+              <TableHeaderColumn>Session</TableHeaderColumn>
+              <TableHeaderColumn>Appeals</TableHeaderColumn>
+              <TableHeaderColumn>R</TableHeaderColumn>
+              <TableHeaderColumn>Vote A</TableHeaderColumn>
+              <TableHeaderColumn>Vote B</TableHeaderColumn>
+              <TableHeaderColumn>Active</TableHeaderColumn>
+              <TableHeaderColumn>Arbitrate</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}
+          >
+
+          {this.state.disputes.map(
+            (obj, index) =>
+              (
+                <TableRow key={index}>
+                  <TableRowColumn>{obj.dispute[0]}</TableRowColumn>
+                  <TableRowColumn>{obj.dispute[1].toNumber()}</TableRowColumn>
+                  <TableRowColumn>{obj.dispute[2].toNumber()}</TableRowColumn>
+                  <TableRowColumn>{obj.dispute[3].toNumber()}</TableRowColumn>
+                  <TableRowColumn>{obj.dispute[4].toNumber()}</TableRowColumn>
+                  <TableRowColumn>{obj.dispute[5].toNumber()}</TableRowColumn>
+                  <TableRowColumn>{obj.active ? 'true' : 'false'}</TableRowColumn>
+                  <TableRowColumn>{obj.active ? <Link to={'arbitrate-contract/' + (index + 1)}><RaisedButton label="Arbitrate" primary={true}/></Link> : <span>No</span>}</TableRowColumn>
+                </TableRow>
+              )
+          )}
+
+          </TableBody>
+        </Table>
       </div>
     )
   }

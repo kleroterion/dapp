@@ -3,10 +3,24 @@ import request from 'superagent'
 import { default as Web3 } from 'web3'
 import { default as contract} from 'truffle-contract'
 import { Link } from 'react-router'
+import Paper from 'material-ui/Paper'
+import AppBar from 'material-ui/AppBar'
+import RaisedButton from 'material-ui/RaisedButton'
 
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
 import '../www/styles/Kleroterion.scss'
+
+const style = {
+  width: 800,
+  margin: 20,
+  paddingTop: 20,
+  paddingBottom: 20,
+  paddingLeft: 40,
+  paddingRight: 40,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class Kleroterion extends Component {
 
@@ -59,14 +73,22 @@ class Kleroterion extends Component {
   render() {
     return (
       <div id="container">
-        <h1>Arbitrate dispute</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed est vitae elit posuere laoreet ut ut sem. Etiam efficitur sodales eleifend. Morbi a urna ac ante accumsan porta. Donec iaculis gravida nunc vel rutrum. Vivamus enim lectus, condimentum eu viverra in, volutpat scelerisque justo. Aenean sodales efficitur finibus. Nulla et nunc vel odio consectetur sagittis eu eu dolor. Morbi id tempor orci. Praesent euismod posuere quam ac tincidunt. Nam laoreet sit amet velit et luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi neque tellus, condimentum vitae neque id, vulputate dignissim nibh. Duis efficitur arcu vitae volutpat tristique. Praesent aliquam urna dui. Suspendisse hendrerit finibus purus, sit amet fringilla magna auctor at.
-        </p>
+        <AppBar
+          title={<Link to='/' style={{color: '#fff', textDecoration: 'none'}}>KLEROTERION</Link>}
+          showMenuIconButton= {false}
+          iconElementRight={<span><i>Balance :</i> {this.state.balance}</span>}
+          iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
+        />
+        <Paper style={style} zDepth={2}>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed est vitae elit posuere laoreet ut ut sem. Etiam efficitur sodales eleifend. Morbi a urna ac ante accumsan porta. Donec iaculis gravida nunc vel rutrum. Vivamus enim lectus, condimentum eu viverra in, volutpat scelerisque justo. Aenean sodales efficitur finibus. Nulla et nunc vel odio consectetur sagittis eu eu dolor. Morbi id tempor orci. Praesent euismod posuere quam ac tincidunt. Nam laoreet sit amet velit et luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi neque tellus, condimentum vitae neque id, vulputate dignissim nibh. Duis efficitur arcu vitae volutpat tristique. Praesent aliquam urna dui. Suspendisse hendrerit finibus purus, sit amet fringilla magna auctor at.
+          </p>
+        </Paper>
         {this.state.arbitrateLoader === 0 ?
           <div>
-            <button onClick={this.arbitrate} value={1}>Vote A</button>
-            <button onClick={this.arbitrate} value={0}>Vote B</button>
+            <RaisedButton onClick={this.arbitrate} value={1} label="Vote A" primary={true}/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <RaisedButton onClick={this.arbitrate} value={0} label="Vote B" primary={true}/>
           </div>
           : <div></div>
         }
@@ -74,7 +96,7 @@ class Kleroterion extends Component {
         {this.state.arbitrateLoader === 2 ?
           <p>
             Merci pour votre arbitrage
-            </br>
+            <br/>
             <Link to='/'>Retour aux disputes</Link>
           </p>
           : <div></div>
