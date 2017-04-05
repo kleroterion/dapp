@@ -80,21 +80,26 @@ class Kleroterion extends Component {
           iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
         />
         <Paper style={style} zDepth={2}>
+
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed est vitae elit posuere laoreet ut ut sem. Etiam efficitur sodales eleifend. Morbi a urna ac ante accumsan porta. Donec iaculis gravida nunc vel rutrum. Vivamus enim lectus, condimentum eu viverra in, volutpat scelerisque justo. Aenean sodales efficitur finibus. Nulla et nunc vel odio consectetur sagittis eu eu dolor. Morbi id tempor orci. Praesent euismod posuere quam ac tincidunt. Nam laoreet sit amet velit et luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi neque tellus, condimentum vitae neque id, vulputate dignissim nibh. Duis efficitur arcu vitae volutpat tristique. Praesent aliquam urna dui. Suspendisse hendrerit finibus purus, sit amet fringilla magna auctor at.
+            Frederico says he have done a better presentation as Vitalik.
+
+            Who made the best presentation, Vitalik or Frederico?
           </p>
         </Paper>
         {this.state.arbitrateLoader === 0 ?
           <div>
-            <RaisedButton onClick={this.arbitrate} value={1} label="Vote A" primary={true}/>
+            <RaisedButton onClick={this.arbitrate} value={1} label="Federico" primary={true}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <RaisedButton onClick={this.arbitrate} value={0} label="Vote B" primary={true}/>
+            <RaisedButton onClick={this.arbitrate} value={0} label="Vitalik" primary={true}/>
           </div>
           : <div></div>
         }
         {this.state.arbitrateLoader === 1 ? <img src='https://hangmanwordgame.com/static/img/loading.gif' /> : <div></div>}
         {this.state.arbitrateLoader === 2 ?
           <p>
+            Your decision was submitted
+            <br/><br/>
             Thanks for the arbitrate
             <br/>
             <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>

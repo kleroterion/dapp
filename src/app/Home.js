@@ -8,6 +8,7 @@ import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 
 
 
@@ -130,61 +131,59 @@ class Kleroterion extends Component {
     return (
       <div id="container">
         <AppBar
-          title={<Link to='/' style={{color: '#fff', textDecoration: 'none'}}>KLEROTERION</Link>}
+          title={<Link to='/' style={{color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION <sup>alpha</sup></Link>}
           showMenuIconButton= {false}
           iconElementRight={<span><i>Balance :</i> {this.state.balance}</span>}
-          iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
+          iconStyleRight={{lineHeight: '50px', paddingRight: '50px'}}
         />
 
-        <Table>
-          <TableHeader
-            displaySelectAll={false}
-            enableSelectAll={false}
-            adjustForCheckbox={false}
-          >
-            <TableRow>
-              <TableHeaderColumn>Adress</TableHeaderColumn>
-              <TableHeaderColumn>Session</TableHeaderColumn>
-              <TableHeaderColumn>Appeals</TableHeaderColumn>
-              <TableHeaderColumn>R</TableHeaderColumn>
-              <TableHeaderColumn>Vote A</TableHeaderColumn>
-              <TableHeaderColumn>Vote B</TableHeaderColumn>
-              <TableHeaderColumn>Active</TableHeaderColumn>
-              <TableHeaderColumn>Arbitrate</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={false}
-          >
+        <div className="content">
 
-          {this.state.disputes.map(
-            (obj, index) =>
-              (
-                <TableRow key={index}>
-                  <TableRowColumn>{obj.dispute[0]}</TableRowColumn>
-                  <TableRowColumn>{obj.dispute[1].toNumber()}</TableRowColumn>
-                  <TableRowColumn>{obj.dispute[2].toNumber()}</TableRowColumn>
-                  <TableRowColumn>{obj.dispute[3].toNumber()}</TableRowColumn>
-                  <TableRowColumn>{obj.dispute[4].toNumber()}</TableRowColumn>
-                  <TableRowColumn>{obj.dispute[5].toNumber()}</TableRowColumn>
-                  <TableRowColumn>{obj.active ? 'true' : 'false'}</TableRowColumn>
-                  <TableRowColumn>
-                    { obj.active && !obj.hasVoted ? <Link to={'arbitrate-contract/' + (index + 1)}><RaisedButton label="Arbitrate" primary={true}/></Link>
-                      : <span></span>
-                    }
-                    { obj.active && obj.hasVoted ? <span>Voted</span>
-                      : <span></span>
-                    }
-                    { !obj.active ? <span>Not arbitrable</span>
-                      : <span></span>
-                    }
-                  </TableRowColumn>
-                </TableRow>
-              )
-          )}
+            {this.state.disputes.map(
+              (obj, index) =>
+                (
+                  <Card style={{marginTop: '40px'}}>
+                    <CardHeader
+                      title="You have been selected to be a jury in the case Federico vs. Vitalik"
+                      subtitle="Who made the best presentation?"
+                    />
+                    <CardMedia
+                      overlay={<CardTitle title="Who made the best presentation?" subtitle="Frederico vs Vitalik" />}
+                    >
+                      <img src="images/nature-600-337.jpg" />
+                    </CardMedia>
+                    <CardTitle title="Breach a website contract" subtitle={obj.dispute[0]}/>
+                    <CardText>
+                      Frederico says he have done a better presentation as Vitalik.
+                      <br/><br/>
+                      Estoming solved time: 2 minutes
+                    </CardText>
+                    <CardActions>
+                      { obj.active && !obj.hasVoted ?
+                        <div className='center'>
+                          <Link to={'arbitrate-contract/' + (index + 1)}>
+                            <FlatButton label="Accept" />
+                          </Link>
+                          <FlatButton label="Deny" />
+                        </div>
+                        : <span></span>
+                      }
+                      { obj.active && obj.hasVoted ? <span>Voted</span>
+                        : <span></span>
+                      }
+                      { !obj.active ? <span>Not arbitrable</span>
+                        : <span></span>
+                      }
+                    </CardActions>
+                  </Card>
+                )
+            )}
 
-          </TableBody>
-        </Table>
+        </div>
+        <div className="footer">
+          <h2>KLEROTERION</h2>
+          <p>Decentralized court project</p>
+        </div>
       </div>
     )
   }
