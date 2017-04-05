@@ -157,7 +157,7 @@ class Kleroterion extends Component {
                       <br/><br/>
                       Frederico says he have done a better presentation as Vitalik.
                       <br/><br/>
-                      Estoming solved time: 2 minutes
+                      Estimated solved time: 2 minutes
                     </CardText>
                     <CardActions>
                       { obj.active && !obj.hasVoted ?
