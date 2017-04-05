@@ -99,11 +99,11 @@ class Kleroterion extends Component {
           }
           {this.state.arbitrateLoader === 1 ? <img src='https://hangmanwordgame.com/static/img/loading.gif' /> : <div></div>}
           {this.state.arbitrateLoader === 2 ?
-            <p>
-              Your decision was submitted
+            <p className='center'>
+              <strong>Your decision was submitted.</strong>
               <br/><br/>
-              Thanks for the arbitrate
-              <br/>
+              Thanks for the arbitrate.
+              <br/><br/>
               <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>
                 <Link to='/'></Link>
               </RaisedButton>
