@@ -79,35 +79,42 @@ class Kleroterion extends Component {
           iconElementRight={<span><i>Balance :</i> {this.state.balance}</span>}
           iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
         />
-        <Paper style={style} zDepth={2}>
 
-          <p>
-            Frederico says he have done a better presentation as Vitalik.
+        <div className="content">
 
-            Who made the best presentation, Vitalik or Frederico?
-          </p>
-        </Paper>
-        {this.state.arbitrateLoader === 0 ?
-          <div>
-            <RaisedButton onClick={this.arbitrate} value={1} label="Federico" primary={true}/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <RaisedButton onClick={this.arbitrate} value={0} label="Vitalik" primary={true}/>
-          </div>
-          : <div></div>
-        }
-        {this.state.arbitrateLoader === 1 ? <img src='https://hangmanwordgame.com/static/img/loading.gif' /> : <div></div>}
-        {this.state.arbitrateLoader === 2 ?
-          <p>
-            Your decision was submitted
-            <br/><br/>
-            Thanks for the arbitrate
-            <br/>
-            <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>
-              <Link to='/'></Link>
-            </RaisedButton>
-          </p>
-          : <div></div>
-        }
+          <Paper style={style} zDepth={2}>
+            <p>
+              Frederico says he have done a better presentation as Vitalik.
+              <br/><br/>
+              <strong>Who made the best presentation, Vitalik or Frederico?</strong>
+            </p>
+          </Paper>
+          {this.state.arbitrateLoader === 0 ?
+            <div className='center'>
+              <RaisedButton onClick={this.arbitrate} value={1} label="Federico" primary={true}/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <RaisedButton onClick={this.arbitrate} value={0} label="Vitalik" primary={true}/>
+            </div>
+            : <div></div>
+          }
+          {this.state.arbitrateLoader === 1 ? <img src='https://hangmanwordgame.com/static/img/loading.gif' /> : <div></div>}
+          {this.state.arbitrateLoader === 2 ?
+            <p>
+              Your decision was submitted
+              <br/><br/>
+              Thanks for the arbitrate
+              <br/>
+              <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>
+                <Link to='/'></Link>
+              </RaisedButton>
+            </p>
+            : <div></div>
+          }
+        </div>
+        <div className="footer">
+          <h3>KLEROTERION</h3>
+          <p>Decentralized court project</p>
+        </div>
       </div>
     )
   }

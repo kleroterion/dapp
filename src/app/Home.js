@@ -176,7 +176,6 @@ class Kleroterion extends Component {
                   </Card>
                 )
             )}
-
         </div>
         <div className="footer">
           <h3>KLEROTERION</h3>
