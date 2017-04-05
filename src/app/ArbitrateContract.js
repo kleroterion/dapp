@@ -74,7 +74,7 @@ class Kleroterion extends Component {
     return (
       <div id="container">
         <AppBar
-          title={<Link to='/' style={{color: '#fff', textDecoration: 'none'}}>KLEROTERION</Link>}
+          title={<Link to='/' style={{color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION <sup>alpha</sup></Link>}
           showMenuIconButton= {false}
           iconElementRight={<span><i>Balance :</i> {this.state.balance}</span>}
           iconStyleRight={{lineHeight: '50px', paddingRight: '30px'}}
