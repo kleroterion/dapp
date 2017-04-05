@@ -142,7 +142,7 @@ class Kleroterion extends Component {
             {this.state.disputes.map(
               (obj, index) =>
                 (
-                  <Card style={{marginTop: '40px'}}>
+                  <Card style={{marginTop: '40px'}} key={index}>
                     <CardHeader
                       title="You have been selected to be a jury in the case Federico vs. Vitalik"
                       subtitle="Who made the best presentation?"
@@ -150,10 +150,11 @@ class Kleroterion extends Component {
                     <CardMedia
                       overlay={<CardTitle title="Who made the best presentation?" subtitle="Frederico vs Vitalik" />}
                     >
-                      <img src="images/nature-600-337.jpg" />
+                      <img src="https://raw.githubusercontent.com/kleroterion/dapp/51e651de659227acd5023a55ea6fa2076f935410/src/www/img/vitalik_vs_frederico.png" />
                     </CardMedia>
-                    <CardTitle title="Breach a website contract" subtitle={obj.dispute[0]}/>
                     <CardText>
+                      <a href={'https://testnet.etherscan.io/address/' + obj.dispute[0]}>{obj.dispute[0]}</a>
+                      <br/><br/>
                       Frederico says he have done a better presentation as Vitalik.
                       <br/><br/>
                       Estoming solved time: 2 minutes
@@ -168,9 +169,6 @@ class Kleroterion extends Component {
                         </div>
                         : <span></span>
                       }
-                      { obj.active && obj.hasVoted ? <span>Voted</span>
-                        : <span></span>
-                      }
                       { !obj.active ? <span>Not arbitrable</span>
                         : <span></span>
                       }
@@ -181,7 +179,7 @@ class Kleroterion extends Component {
 
         </div>
         <div className="footer">
-          <h2>KLEROTERION</h2>
+          <h3>KLEROTERION</h3>
           <p>Decentralized court project</p>
         </div>
       </div>
