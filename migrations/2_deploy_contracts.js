@@ -1,7 +1,5 @@
 var ArbitratedBuy = artifacts.require("./Arbitrated/ArbitratedBuy.sol");
-var ArbitratedBuy = artifacts.require("./Arbitrated/CourtBuyable.sol");
-
-
+var CourtBuyable = artifacts.require("./BuyableCourt.sol");
 var Court = artifacts.require("./Court.sol");
 //var Web3 = require('../node_modules/web3');
 
