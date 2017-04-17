@@ -83,7 +83,7 @@ class Kleroterion extends Component {
   activatedJuryTokens = () => {
     this.state.buyableCourt
       .at(config.buyableCourt.address)
-      .then(res => res.activateTokensForJury(this.state.activatedJuryTokens, {from: web3.eth.accounts[0]})
+      .then(res => res.activateTokensForJury(this.state.balance, {from: web3.eth.accounts[0]})
         .then(r => console.log('activateTokensForJury', r))
       )
   }
@@ -216,7 +216,7 @@ class Kleroterion extends Component {
                         title={this.state.cards[index] ? this.state.cards[index].cardTitle : ''}
                         subtitle={this.state.cards[index] ? this.state.cards[index].cardSubTitle : ''} />}
                     >
-                      <img src="https://raw.githubusercontent.com/kleroterion/dapp/51e651de659227acd5023a55ea6fa2076f935410/src/www/img/vitalik_vs_frederico.png" />
+                      <img src={this.state.cards[index] ? this.state.cards[index].img : ''} />
                     </CardMedia>
                     <CardText>
                       <a href={'https://testnet.etherscan.io/address/' + obj.dispute[0]}>{obj.dispute[0]}</a>

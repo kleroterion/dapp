@@ -71,6 +71,8 @@ class Kleroterion extends Component {
       })
   }
 
+  goHome = () => window.location.assign("/")
+
   render() {
     return (
       <div id="container">
@@ -105,9 +107,7 @@ class Kleroterion extends Component {
               <br/><br/>
               Thanks for the arbitrate.
               <br/><br/>
-              <RaisedButton onClick={this.arbitrate} value={0} label="Back to the disputes" primary={true}>
-                <Link to='/'></Link>
-              </RaisedButton>
+              <RaisedButton onClick={this.goHome} label="Back to the disputes" primary={true}></RaisedButton>
             </p>
             : <div></div>
           }
