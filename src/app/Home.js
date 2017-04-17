@@ -28,28 +28,35 @@ class Kleroterion extends Component {
     disputes: [],
     minJuryToken: 0,
     voteStatus: 'Not arbitrable',
+    activatedJuryTokens: 0,
+    buyableCourt: null,
   }
 
   componentDidMount() {
     setTimeout(() => {
       if (typeof web3 !== 'undefined') {
         this.setState({web3: true})
-        var buyableCourtContract = web3.eth.contract(config.buyableCourt.abi);
+        let buyableCourtContract = web3.eth.contract(config.buyableCourt.abi);
         this.setState({buyableCourtContract})
+        let buyableCourt = contract({
+          abi: config.buyableCourt.abi
+        })
+        buyableCourt.setProvider(web3.currentProvider)
+        this.setState({buyableCourt})
         this.getMinJuryToken()
         this.getDisputes()
 
-        let MyContract = contract({
-          abi: config.buyableCourt.abi
-        })
+
 
         console.log('test',this.state.buyableCourtContract.at(config.buyableCourt.address))
 
-        MyContract.setProvider(web3.currentProvider)
 
-        //MyContract.at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f').then(c => c.nbDispute().then(res => console.log('ewfew',res.toNumber())))
+
+
 
         this.getBalance()
+
+        this.getActivatedJuryTokens()
 /*
         MyContract
           .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
@@ -62,10 +69,18 @@ class Kleroterion extends Component {
     }, 1000)
   }
 
+  getActivatedJuryTokens = () => {
+    this.state.buyableCourt
+      .at(config.buyableCourt.address)
+      .then(res => res.activatedJuryTokens(web3.eth.accounts[0])
+        .then(r => this.setState({activatedJuryTokens: r.toNumber()}))
+      )
+  }
+
   getDisputes = () => {
     this.state.buyableCourtContract
     .at(config.buyableCourt.address)
-    .nbDispute({from: web3.eth.accounts[0]}, (err,res) => {
+    .nbDisputes({from: web3.eth.accounts[0]}, (err,res) => {
       this.setState({nbDispute: res.toNumber()})
       console.log('nbDispute :', this.state.nbDispute)
       let disputes = [...new Array(res.toNumber()-1).keys()]
@@ -151,6 +166,8 @@ class Kleroterion extends Component {
           iconElementRight={
             <span>
               <i>Balance :</i> {this.state.balance}
+              &nbsp;&nbsp;&nbsp;
+              <i>Activated :</i> {this.state.activatedJuryTokens}
               <FlatButton
                 backgroundColor="#fff"
                 className='buyTokens'
@@ -171,17 +188,17 @@ class Kleroterion extends Component {
                   <Card style={{marginTop: '40px'}} key={index}>
                     <CardHeader
                       title="You have been selected to be a jury in the case Federico vs. Vitalik"
-                      subtitle="Who made the best perrentation?"
+                      subtitle="Who made the best presentation?"
                     />
                     <CardMedia
-                      overlay={<CardTitle title="Who made the best perrentation?" subtitle="Frederico vs Vitalik" />}
+                      overlay={<CardTitle title="Who made the best presentation?" subtitle="Frederico vs Vitalik" />}
                     >
                       <img src="https://raw.githubusercontent.com/kleroterion/dapp/51e651de659227acd5023a55ea6fa2076f935410/src/www/img/vitalik_vs_frederico.png" />
                     </CardMedia>
                     <CardText>
                       <a href={'https://testnet.etherscan.io/address/' + obj.dispute[0]}>{obj.dispute[0]}</a>
                       <br/><br/>
-                      Frederico says he have done a better perrentation as Vitalik.
+                      Frederico says he have done a better presentation as Vitalik.
                       <br/><br/>
                       Estimated solved time: 2 minutes
                     </CardText>
@@ -195,7 +212,7 @@ class Kleroterion extends Component {
                         </div>
                         : <span></span>
                       }
-                      { !obj.active ? <span>Not arbitrable</span>
+                      { !obj.active ? <span>This dispute has already been solved</span>
                         : <span></span>
                       }
                     </CardActions>
