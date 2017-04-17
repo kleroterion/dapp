@@ -30,6 +30,15 @@ class Kleroterion extends Component {
     voteStatus: 'Not arbitrable',
     activatedJuryTokens: 0,
     buyableCourt: null,
+    cards: [
+      {
+        title: "You have been selected to be a jury in the case Federico vs. Vitalik",
+        subtitle: "Who made the best presentation?",
+        cardTitle: "Who made the best presentation?",
+        cardSubTitle: "Frederico vs Vitalik",
+        img: 'https://raw.githubusercontent.com/kleroterion/dapp/51e651de659227acd5023a55ea6fa2076f935410/src/www/img/vitalik_vs_frederico.png',
+      },
+    ],
   }
 
   componentDidMount() {
@@ -46,13 +55,7 @@ class Kleroterion extends Component {
         this.getMinJuryToken()
         this.getDisputes()
 
-
-
         console.log('test',this.state.buyableCourtContract.at(config.buyableCourt.address))
-
-
-
-
 
         this.getBalance()
 
@@ -74,6 +77,14 @@ class Kleroterion extends Component {
       .at(config.buyableCourt.address)
       .then(res => res.activatedJuryTokens(web3.eth.accounts[0])
         .then(r => this.setState({activatedJuryTokens: r.toNumber()}))
+      )
+  }
+
+  activatedJuryTokens = () => {
+    this.state.buyableCourt
+      .at(config.buyableCourt.address)
+      .then(res => res.activateTokensForJury(this.state.activatedJuryTokens, {from: web3.eth.accounts[0]})
+        .then(r => console.log('activateTokensForJury', r))
       )
   }
 
@@ -166,15 +177,25 @@ class Kleroterion extends Component {
           iconElementRight={
             <span>
               <i>Balance</i> : {this.state.balance}
-              &nbsp;&nbsp;&nbsp;
-              <i>Activated</i> : {this.state.activatedJuryTokens}
               <FlatButton
                 backgroundColor="#fff"
                 className='buyTokens'
                 label="Buy Tokens"
-                style={{marginLeft:'30px'}}
+                style={{marginLeft:'30px', marginRight:'30px'}}
                 onClick={this.buyTokens}
               />
+              <i>Activated</i> : {this.state.activatedJuryTokens}
+              {
+                this.state.balance > 0 && this.state.activatedJuryTokens < 1 ?
+                <FlatButton
+                  backgroundColor="#fff"
+                  className='buyTokens'
+                  label="Activated Tokens"
+                  style={{marginLeft:'30px'}}
+                  onClick={this.activatedJuryTokens}
+                />
+                : <div></div>
+              }
             </span>
           }
           iconStyleRight={{lineHeight: '50px', paddingRight: '50px'}}
@@ -187,11 +208,13 @@ class Kleroterion extends Component {
                 (
                   <Card style={{marginTop: '40px'}} key={index}>
                     <CardHeader
-                      title="You have been selected to be a jury in the case Federico vs. Vitalik"
-                      subtitle="Who made the best presentation?"
+                      title={this.state.cards[index] ? this.state.cards[index].title : ''}
+                      subtitle={this.state.cards[index] ? this.state.cards[index].subtitle : ''}
                     />
                     <CardMedia
-                      overlay={<CardTitle title="Who made the best presentation?" subtitle="Frederico vs Vitalik" />}
+                      overlay={<CardTitle
+                        title={this.state.cards[index] ? this.state.cards[index].cardTitle : ''}
+                        subtitle={this.state.cards[index] ? this.state.cards[index].cardSubTitle : ''} />}
                     >
                       <img src="https://raw.githubusercontent.com/kleroterion/dapp/51e651de659227acd5023a55ea6fa2076f935410/src/www/img/vitalik_vs_frederico.png" />
                     </CardMedia>
@@ -206,9 +229,8 @@ class Kleroterion extends Component {
                       { obj.active && !obj.hasVoted ?
                         <div className='center'>
                           <Link to={'arbitrate-contract/' + (index + 1)}>
-                            <FlatButton label="Accept" />
+                            <FlatButton label="Rule" />
                           </Link>
-                          <FlatButton label="Deny" />
                         </div>
                         : <span></span>
                       }
