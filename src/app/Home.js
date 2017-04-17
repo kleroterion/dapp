@@ -165,9 +165,9 @@ class Kleroterion extends Component {
           showMenuIconButton= {false}
           iconElementRight={
             <span>
-              <i>Balance :</i> {this.state.balance}
+              <i>Balance</i> : {this.state.balance}
               &nbsp;&nbsp;&nbsp;
-              <i>Activated :</i> {this.state.activatedJuryTokens}
+              <i>Activated</i> : {this.state.activatedJuryTokens}
               <FlatButton
                 backgroundColor="#fff"
                 className='buyTokens'
