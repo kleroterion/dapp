@@ -24,6 +24,7 @@ class Kleroterion extends Component {
     balance: 0,
     nbDispute: 0,
     disputes: null,
+    buyableCourtContractAddress: '',
     buyableCourtContract: null,
     disputes: [],
     minJuryToken: 0,
@@ -52,10 +53,11 @@ class Kleroterion extends Component {
         })
         buyableCourt.setProvider(web3.currentProvider)
         this.setState({buyableCourt})
+        this.setState({buyableCourtContractAddress: localStorage.getItem('addressBuyableCourt')})
         this.getMinJuryToken()
         this.getDisputes()
 
-        console.log('test',this.state.buyableCourtContract.at(config.buyableCourt.address))
+        console.log('contract buyable court',this.state.buyableCourtContract.at(this.state.buyableCourtContractAddress))
 
         this.getBalance()
 
@@ -69,12 +71,12 @@ class Kleroterion extends Component {
       } else {
         alert("install Metamask or use Mist")
       }
-    }, 1000)
+    }, 500)
   }
 
   getActivatedJuryTokens = () => {
     this.state.buyableCourt
-      .at(config.buyableCourt.address)
+      .at(this.state.buyableCourtContractAddress)
       .then(res => res.activatedJuryTokens(web3.eth.accounts[0])
         .then(r => this.setState({activatedJuryTokens: r.toNumber()}))
       )
@@ -82,7 +84,7 @@ class Kleroterion extends Component {
 
   activatedJuryTokens = () => {
     this.state.buyableCourt
-      .at(config.buyableCourt.address)
+      .at(this.state.buyableCourtContractAddress)
       .then(res => res.activateTokensForJury(this.state.balance, {from: web3.eth.accounts[0]})
         .then(r => console.log('activateTokensForJury', r))
       )
@@ -90,8 +92,9 @@ class Kleroterion extends Component {
 
   getDisputes = () => {
     this.state.buyableCourtContract
-    .at(config.buyableCourt.address)
-    .nbDisputes({from: web3.eth.accounts[0]}, (err,res) => {
+    .at(this.state.buyableCourtContractAddress)
+    .nbDisputes({from: web3.eth.accounts[0]}, (err, res) => {
+      console.log('ewf', res)
       this.setState({nbDispute: res.toNumber()})
       console.log('nbDispute :', this.state.nbDispute)
       let disputes = [...new Array(res.toNumber()-1).keys()]
@@ -100,7 +103,7 @@ class Kleroterion extends Component {
         this.getDispute(i+1, (err, resDispute) => {
           console.log('dispute', resDispute)
           this.state.buyableCourtContract
-            .at(config.buyableCourt.address)
+            .at(this.state.buyableCourtContractAddress)
             .getHasVoted(i+1, web3.eth.accounts[0], {from: web3.eth.accounts[0]}, (_, errHasVoted) => {
               console.log('errHasVoted', errHasVoted.c[0])
               if (errHasVoted.c[0] == resDispute[1].c[0]) {
@@ -111,11 +114,11 @@ class Kleroterion extends Component {
 
             })
           this.state.buyableCourtContract
-            .at(config.buyableCourt.address)
+            .at(this.state.buyableCourtContractAddress)
             .minJuryToken((err, resMinJuryToken) => {
               console.log('resMinJuryToken:', resMinJuryToken)
               this.state.buyableCourtContract
-                .at(config.buyableCourt.address)
+                .at(this.state.buyableCourtContractAddress)
                 .drawnTokens(
                   web3.eth.accounts[0],
                   resDispute[3].c[0],
@@ -143,26 +146,26 @@ class Kleroterion extends Component {
   }
 
   getDispute = (id, cb) => this.state.buyableCourtContract
-    .at(config.buyableCourt.address)
+    .at(this.state.buyableCourtContractAddress)
     .disputes(id, {from: web3.eth.accounts[0]}, cb)// add dispute in state
 
   getBalance = () =>
     this.state.buyableCourtContract
-    .at(config.buyableCourt.address)
+    .at(this.state.buyableCourtContractAddress)
     .balanceOf(web3.eth.accounts[0], {from: web3.eth.accounts[0]}, (err,res) => {
         this.setState({balance: isNaN(res) ? 0 : res.toNumber()})
         console.log('balance :', res)
       })
 
   getMinJuryToken = () => this.state.buyableCourtContract
-    .at(config.buyableCourt.address)
+    .at(this.state.buyableCourtContractAddress)
     .minJuryToken((err,res) => this.setState({minJuryToken: res.toNumber()}))
 
   handleChange = field => ({ target: { value } }) => this.setState({ [field]: value })
 
   buyTokens = () =>
     this.state.buyableCourtContract
-    .at(config.buyableCourt.address)
+    .at(this.state.buyableCourtContractAddress)
     .buyTokens({from: web3.eth.accounts[0], value: 1000000000000000000}, (err, res) => {
         console.log('buy tokens :', res)
         console.log('err', err)
@@ -232,9 +235,6 @@ class Kleroterion extends Component {
                             <FlatButton label="Rule" />
                           </Link>
                         </div>
-                        : <span></span>
-                      }
-                      { !obj.active ? <span>This dispute has already been solved</span>
                         : <span></span>
                       }
                     </CardActions>

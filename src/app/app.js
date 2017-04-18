@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Home from './Home'
 import ArbitrateContract from './ArbitrateContract'
+import Backoffice from './Backoffice'
 
 import '../www/styles/main.scss'
 
@@ -19,6 +20,7 @@ render((
     <Router history={hashHistory}>
       <Route path="/" component={Home}/>
       <Route path="/arbitrate-contract/:disputeId" component={ArbitrateContract}/>
+      <Route path="/admin" component={Backoffice}/>
     </Router>
   </MuiThemeProvider>
 ), document.getElementById('app'))
