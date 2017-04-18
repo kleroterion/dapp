@@ -62,12 +62,6 @@ class Kleroterion extends Component {
         this.getBalance()
 
         this.getActivatedJuryTokens()
-/*
-        MyContract
-          .at('0xc92aa8aF07aD57d023E8A2FE18175D69dDd6b02f')
-          .then(c => c.balanceOf(web3.eth.accounts[0], {from: web3.eth.accounts[0]})
-          .then(r => console.log('balance', r)))
-*/
       } else {
         alert("install Metamask or use Mist")
       }
@@ -94,7 +88,6 @@ class Kleroterion extends Component {
     this.state.buyableCourtContract
     .at(this.state.buyableCourtContractAddress)
     .nbDisputes({from: web3.eth.accounts[0]}, (err, res) => {
-      console.log('ewf', res)
       this.setState({nbDispute: res.toNumber()})
       console.log('nbDispute :', this.state.nbDispute)
       let disputes = [...new Array(res.toNumber()-1).keys()]

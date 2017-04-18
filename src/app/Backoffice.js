@@ -30,7 +30,34 @@ class Kleroterion extends Component {
 
   state = {
     addressBuyableCourt: '',
+    addressDemoArbitrable: '',
+    demoArbitrable: '',
     open: false,
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      if (typeof web3 !== 'undefined') {
+        let demoArbitrable = contract({
+          abi: config.demoArbitrable.abi
+        })
+        demoArbitrable.setProvider(web3.currentProvider)
+
+        this.setState({demoArbitrable})
+
+      } else {
+        alert("install Metamask or use Mist")
+      }
+    }, 500)
+  }
+
+  executeDemo = () => {
+    console.log(this.state.addressDemoArbitrable)
+    this.state.demoArbitrable
+      .at(this.state.addressDemoArbitrable)
+      .then(res => res.executeDemo({from: web3.eth.accounts[0]})
+        .then(res => console.log(res))
+      )
   }
 
   handleTouchTap = () => this.setState({open: true})
@@ -40,6 +67,8 @@ class Kleroterion extends Component {
   handleChange = name => event => this.setState({[name]: event.target.value})
 
   setAddressBuyableCourt = () => localStorage.setItem('addressBuyableCourt', this.state.addressBuyableCourt)
+
+  setAddressDemoArbitrable = () => localStorage.setItem('addressDemoArbitrable', this.state.addressDemoArbitrable)
 
   render() {
     return (
@@ -52,21 +81,42 @@ class Kleroterion extends Component {
         <div className="content">
 
           <Paper style={style} zDepth={2}>
-            <h1>Address BuyableCourt</h1>
+            <h1>Demo court</h1>
             <TextField
-              hintText="Address BuyableCourt"
+              hintText={localStorage.getItem('addressBuyableCourt') ? localStorage.getItem('addressBuyableCourt') : "Address BuyableCourt"}
               onChange={this.handleChange('addressBuyableCourt')}
             />
-          <RaisedButton style={styleButton} label="Save" onClick={this.setAddressBuyableCourt} onTouchTap={this.handleTouchTap} />
+          <RaisedButton
+            style={styleButton}
+            label="Save"
+            onClick={this.setAddressBuyableCourt}
+            onTouchTap={this.handleTouchTap}
+          />
+
+          <h1>Demo arbitrable</h1>
+          <TextField
+            hintText={localStorage.getItem('addressDemoArbitrable') ? localStorage.getItem('addressDemoArbitrable') : "Address demo arbitrable"}
+            onChange={this.handleChange('addressDemoArbitrable')}
+          />
+          <RaisedButton
+            style={styleButton}
+            label="Save"
+            onClick={this.setAddressDemoArbitrable}
+            onTouchTap={this.handleTouchTap}
+          />
           <Snackbar
             open={this.state.open}
-            message={"Address BuyableCourt saved."}
+            message={"Address saved."}
             autoHideDuration={4000}
             onRequestClose={this.handleRequestClose}
-            bodyStyle={{backgroundColor: 'rgb(255, 64, 129)'}}
+            bodyStyle={{backgroundColor: 'rgb(255, 64, 129)', textAlign: 'center'}}
           />
-        {console.log(this.state)}
-          </Paper>
+          {
+            this.state.addressDemoArbitrable
+              ? <RaisedButton label="Execute demo" primary={true} onClick={this.executeDemo} />
+              : v => v
+          }
+        </Paper>
 
         </div>
         <div className="footer">
