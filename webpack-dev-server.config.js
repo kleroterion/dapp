@@ -52,6 +52,7 @@ const config = {
         test: /\.scss$/, // All .scss files
         loaders: ['style', 'css', 'sass'],
       },
+      { test: /\.(png|woff|woff2|eot|otf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },
 };
