@@ -11,6 +11,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import FontAwesome from 'react-fontawesome'
 import config from '../../config'
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
@@ -167,7 +168,7 @@ class Kleroterion extends Component {
     return (
       <div id="container">
         <AppBar
-          title={<Link to='/' style={{fontFamily: 'code', letterSpacing: '10px', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION<sup style={{fontFamily: 'Roboto, sans-serif', letterSpacing: '0px', fontVariant: 'lowercase'}}>ALPHA</sup></Link>}
+          title={<Link to='/' style={{fontFamily: 'code', letterSpacing: '10px', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION<sup style={{fontFamily: 'Roboto, sans-serif', letterSpacing: '0px'}}>ALPHA</sup></Link>}
           showMenuIconButton= {false}
           style={{backgroundColor: 'rgba(0, 0, 0, 1)', color: 'rgba(255, 255, 255, 1)'}}
           iconElementRight={
@@ -198,6 +199,16 @@ class Kleroterion extends Component {
         />
 
         <div className="content">
+            <div className='sideBar'>
+              <nav className='vertical'>
+                <ul>
+                  <li><FontAwesome name='institution' /><a href="">Court</a></li>
+                  <li><FontAwesome name='gavel' /><a href="">Dispute</a></li>
+                  <li><FontAwesome name='plus' /><a href="">Buy token</a></li>
+                  <li><FontAwesome name='cogs' /><a href="">Settings</a></li>
+                </ul>
+              </nav>
+            </div>
 
             {this.state.disputes.map(
               (obj, index) =>
