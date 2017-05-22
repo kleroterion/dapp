@@ -167,7 +167,7 @@ class Kleroterion extends Component {
     return (
       <div id="container">
         <AppBar
-          title={<Link to='/' style={{fontFamily: 'code', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION <sup>alpha</sup></Link>}
+          title={<Link to='/' style={{fontFamily: 'code', letterSpacing: '10px', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION<sup style={{fontFamily: 'Roboto, sans-serif', letterSpacing: '0px', fontVariant: 'lowercase'}}>ALPHA</sup></Link>}
           showMenuIconButton= {false}
           style={{backgroundColor: 'rgba(0, 0, 0, 1)', color: 'rgba(255, 255, 255, 1)'}}
           iconElementRight={
