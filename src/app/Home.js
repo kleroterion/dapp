@@ -13,6 +13,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import FontAwesome from 'react-fontawesome'
 import Identicon from './Identicon'
+import Divider from 'material-ui/Divider'
+import Toggle from 'material-ui/Toggle'
 import config from '../../config'
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
@@ -36,18 +38,87 @@ class Kleroterion extends Component {
         />
 
         <div className="content">
-            <div className='sideBar'>
-              <nav className='vertical'>
-                <ul>
-                  <li><FontAwesome name='institution' /><a href="">Court</a></li>
-                  <li><FontAwesome name='gavel' /><a href="">Dispute</a></li>
-                  <li><FontAwesome name='plus' /><a href="">Buy token</a></li>
-                  <li><FontAwesome name='cogs' /><a href="">Settings</a></li>
-                </ul>
-              </nav>
+          <div className='sideBar'>
+            <nav className='vertical'>
+              <ul>
+                <li><FontAwesome name='institution' /><a href="">Court</a></li>
+                <li><FontAwesome name='gavel' /><a href="">Dispute</a></li>
+                <li><FontAwesome name='plus' /><a href="">Buy token</a></li>
+                <li><FontAwesome name='cogs' /><a href="">Settings</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div className='bodyContent'>
+            <div className='title-court'>
+              <div>
+                <h1>General court</h1>
+              </div>
+              <div>
+                <Toggle
+                  label=""
+                />
+              </div>
             </div>
 
+            <div className='courts'>
+              <div className='court' style={{background: "url('http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg') no-repeat 10%"}}>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+              <div className='court'>
+                <div></div>
+                <div className='court-footer'>
+                  B2B
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="footer">
           <h3>KLEROTERION</h3>
           <p>Decentralized court project</p>
