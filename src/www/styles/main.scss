@@ -33,6 +33,11 @@ body {
   width: 200px;
 }
 
+canvas.identicon {
+  border: 2px #fff solid;
+  border-radius: 2px;
+}
+
 nav.vertical > ul {
   margin: 0;
   padding: 0;
