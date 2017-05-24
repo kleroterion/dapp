@@ -7,6 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Home from './Home'
 import ArbitrateContract from './ArbitrateContract'
 import Backoffice from './Backoffice'
+import Dispute from './Dispute'
 
 import '../www/styles/main.scss'
 
@@ -18,7 +19,8 @@ injectTapEventPlugin();
 render((
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <Router history={hashHistory}>
-      <Route path="/" component={Home}/>
+      <Route path="/" component={Home} />
+      <Route path="/dispute" component={Dispute} />
       <Route path="/arbitrate-contract/:disputeId" component={ArbitrateContract}/>
       <Route path="/admin" component={Backoffice}/>
     </Router>
