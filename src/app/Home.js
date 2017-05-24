@@ -15,6 +15,7 @@ import Identicon from './Identicon'
 import Divider from 'material-ui/Divider'
 import Toggle from 'material-ui/Toggle'
 import SideBar from './SideBar'
+import GridCard from './GridCard'
 import config from '../../config'
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
@@ -51,63 +52,12 @@ class Kleroterion extends Component {
                 />
               </div>
             </div>
-
-            <div className='courts'>
-              <div className='court' style={{background: "url('http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg') no-repeat 10%"}}>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-              <div className='court'>
-                <div></div>
-                <div className='court-footer'>
-                  B2B
-                </div>
-              </div>
-            </div>
+            <GridCard content={[
+                {'title' : 'B2B', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'},
+                {'title' : 'B2C', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'},
+                {'title' : 'Freelance', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'}
+              ]}
+            />
           </div>
         </div>
 
