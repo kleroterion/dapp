@@ -48,7 +48,7 @@ class Kleroterion extends Component {
               <div>
                 <Toggle
                   label=""
-                  style={{paddingTop: '20px'}}
+                  style={{position: 'relative', top: '14px'}}
                 />
               </div>
             </div>
