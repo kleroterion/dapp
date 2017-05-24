@@ -8,11 +8,11 @@ export default class GridList extends Component {
 
   render() {
     return (
-      <div className='courts'>
+      <div className='cards'>
         {this.props.content.map(card =>
-          <div key={card.title} className='court' style={{background: `url(${card.img}) no-repeat`}}>
+          <div key={card.title} className='card' style={{background: `url(${card.img}) no-repeat`}}>
             <div></div>
-            <div className='court-footer'>
+            <div className='card-footer'>
               {card.title}
             </div>
           </div>

@@ -86,13 +86,13 @@ nav.vertical > ul > li {
   padding: 0;
 }
 
-.courts {
+.cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.court {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -110,7 +110,7 @@ nav.vertical > ul > li {
   transform: scale(1);
 }
 
-.court:hover {
+.card:hover {
   box-shadow: 0px 0px 150px #000000;
   z-index: 2;
   -webkit-transition: all 200ms ease-in;
@@ -123,7 +123,7 @@ nav.vertical > ul > li {
   transform: scale(1.5);
 }
 
-.court-footer {
+.card-footer {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   text-align: center;
