@@ -50,7 +50,7 @@ class Settings extends Component {
               <dl>
                 <dt>Pinakion</dt>
                 <dd>
-                  168 PNK
+                  Π168 PNK
                 </dd>
               </dl>
               <dl>

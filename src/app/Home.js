@@ -33,7 +33,7 @@ class Kleroterion extends Component {
         <AppBar
           title={<Link to='/' style={{fontFamily: 'code', letterSpacing: '10px', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION<sup style={{fontFamily: 'Roboto, sans-serif', letterSpacing: '0px'}}>ALPHA</sup></Link>}
           showMenuIconButton= {false}
-          iconElementRight={<span><Identicon seed='tesdt' /> PNK: P0.001</span>}
+          iconElementRight={<span><Identicon seed='tesdt' /> PNK: Π0.001</span>}
           style={{backgroundColor: 'rgba(0, 0, 0, 1)', color: 'rgba(255, 255, 255, 1)'}}
           iconStyleRight={{margin: '14px 0 0 0'}}
         />
