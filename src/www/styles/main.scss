@@ -79,6 +79,22 @@ nav.vertical > ul > li {
   flex-grow: 1;
 }
 
+.subContent-settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.subContent-settings dt, .subContent-settings dd {
+  text-align: center;
+}
+
+.subContent-settings dt {
+  font-weight: bold;
+}
+
 .title-court {
   display: flex;
   flex-direction: row;

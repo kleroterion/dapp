@@ -46,7 +46,20 @@ class Settings extends Component {
                 <h1>Your account</h1>
               </div>
             </div>
-            
+            <div className='subContent-settings'>
+              <dl>
+                <dt>Pinakion</dt>
+                <dd>
+                  168 PNK
+                </dd>
+              </dl>
+              <dl>
+                <dt>Address</dt>
+                <dd>
+                  0x70faa28a6b8d6829a4b1e649d26ec9a2a39ba413
+                </dd>
+              </dl>
+            </div>
           </div>
         </div>
 
