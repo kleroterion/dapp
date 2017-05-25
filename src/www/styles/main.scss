@@ -15,7 +15,7 @@ body {
 
 @font-face {
   font-family: 'code';
-  src: url('./fonts/code.otf');
+  src: url('https://github.com/kleroterion/dapp/blob/master/src/www/styles/fonts/code.otf');
 }
 
 
@@ -34,7 +34,6 @@ body {
 .sideBar {
   border-right: 1px solid rgba(33, 33, 33, 0.25);
   background-color: rgba(253, 253, 253, 1);
-
   width: 200px;
 }
 
@@ -72,10 +71,19 @@ nav.vertical > ul > li {
   padding: 0 20px;
 }
 
+.subContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .title-court {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #ddd;
   padding: 30px 0 10px 0;
   margin-bottom: 20px;
@@ -128,6 +136,10 @@ nav.vertical > ul > li {
   background-color: rgba(255, 255, 255, 0.9);
   text-align: center;
   line-height: 50px;
+}
+
+.price-token {
+  align-self: flex-end;
 }
 
 .footer {

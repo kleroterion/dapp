@@ -15,6 +15,7 @@ const config = {
   ],
   // Server Configuration options
   devServer: {
+    disableHostCheck: true,
     contentBase: 'src/www', // Relative directory for base of server
     devtool: 'eval',
     hot: true, // Live-reload

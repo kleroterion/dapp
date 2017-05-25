@@ -8,6 +8,8 @@ import Home from './Home'
 import ArbitrateContract from './ArbitrateContract'
 import Backoffice from './Backoffice'
 import Dispute from './Dispute'
+import Buy from './Buy'
+import Settings from './Settings'
 
 import '../www/styles/main.scss'
 
@@ -21,6 +23,8 @@ render((
     <Router history={hashHistory}>
       <Route path="/" component={Home} />
       <Route path="/dispute" component={Dispute} />
+      <Route path="/buy" component={Buy} />
+      <Route path="/settings" component={Settings} />
       <Route path="/arbitrate-contract/:disputeId" component={ArbitrateContract}/>
       <Route path="/admin" component={Backoffice}/>
     </Router>
