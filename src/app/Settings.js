@@ -16,6 +16,7 @@ import Divider from 'material-ui/Divider'
 import Toggle from 'material-ui/Toggle'
 import SideBar from './SideBar'
 import GridCard from './GridCard'
+import Footer from './Footer'
 import config from '../../config'
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
@@ -63,10 +64,7 @@ class Settings extends Component {
           </div>
         </div>
 
-        <div className="footer">
-          <h3>KLEROTERION</h3>
-          <p>Decentralized court project</p>
-        </div>
+        <Footer />
       </div>
     )
   }
