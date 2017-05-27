@@ -21,14 +21,7 @@ import config from '../../config'
 
 import '../www/styles/Kleroterion.scss'
 
-class Dispute extends Component {
-
-  state = {
-  }
-
-  render() {
-    return (
-
+const Dispute = () => (
       <div id="container">
         <AppBar
           title={<Link to='/' style={{fontFamily: 'code', letterSpacing: '10px', color: '#fff', textDecoration: 'none', position: 'relative', top: '-6px'}}>KLEROTERION<sup style={{fontFamily: 'Roboto, sans-serif', letterSpacing: '0px'}}>ALPHA</sup></Link>}
@@ -61,7 +54,5 @@ class Dispute extends Component {
         </div>
       </div>
     )
-  }
-}
 
 export default Dispute
