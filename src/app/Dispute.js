@@ -17,6 +17,7 @@ import Toggle from 'material-ui/Toggle'
 import SideBar from './SideBar'
 import GridCard from './GridCard'
 import config from '../../config'
+import Footer from './Footer'
 //import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
 import '../www/styles/Kleroterion.scss'
@@ -48,10 +49,7 @@ const Dispute = () => (
           </div>
         </div>
 
-        <div className="footer">
-          <h3>KLEROTERION</h3>
-          <p>Decentralized court project</p>
-        </div>
+        <Footer />
       </div>
     )
 
