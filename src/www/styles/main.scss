@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'Roboto', sans-serif;}
 
@@ -9,7 +15,7 @@ body {
 
 @font-face {
   font-family: 'code';
-  src: url('./fonts/code.otf');
+  src: url('https://github.com/kleroterion/dapp/blob/master/src/www/styles/fonts/code.otf');
 }
 
 
@@ -23,14 +29,17 @@ body {
   flex-grow:1;
   display: flex;
   flex-direction: row;
-
 }
 
 .sideBar {
   border-right: 1px solid rgba(33, 33, 33, 0.25);
   background-color: rgba(253, 253, 253, 1);
-
   width: 200px;
+}
+
+canvas.identicon {
+  border: 2px #fff solid;
+  border-radius: 2px;
 }
 
 nav.vertical > ul {
@@ -44,7 +53,7 @@ nav.vertical > ul > li{
     border-bottom: 1px solid rgba(33, 33, 33, 0.15);
 }
 
-nav.vertical a {
+nav.vertical .sideBar-item {
   text-decoration: none;
   padding-left: 1rem;
   color: rgba(33, 33, 33, 0.90);
@@ -52,6 +61,101 @@ nav.vertical a {
 
 nav.vertical > ul > li {
   display: block;
+}
+
+.bodyContent {
+  width: 90%;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.subContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.subContent-settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.subContent-settings dt, .subContent-settings dd {
+  text-align: center;
+}
+
+.subContent-settings dt {
+  font-weight: bold;
+}
+
+.title-court {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 30px 0 10px 0;
+  margin-bottom: 20px;
+}
+
+.title-court h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: gray;
+  width: 190px;
+  height: 190px;
+  margin: 10px;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1);
+  transition: all 200ms ease-in;
+  transform: scale(1);
+}
+
+.card:hover {
+  box-shadow: 0px 0px 150px #000000;
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.5);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.5);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.5);
+  transition: all 200ms ease-in;
+  transform: scale(1.5);
+}
+
+.card-footer {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  line-height: 50px;
+}
+
+.price-token {
+  align-self: flex-end;
 }
 
 .footer {
@@ -64,6 +168,10 @@ nav.vertical > ul > li {
   width: 100%;
   min-height: 100px;
   padding-top: 5px;}
+
+.footer h3 {
+  padding-top: 20px;
+}
 
 sup {
   position: relative;
