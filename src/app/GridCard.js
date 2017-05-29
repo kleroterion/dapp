@@ -5,7 +5,7 @@ const GridList = props =>
   (
     <div className='cards'>
       {props.content.map(card =>
-        <div key={card.title} className='card' style={{background: `url(${card.img}) no-repeat`}}>
+        <div onClick={event => {window.location='/#/arbitrate-dispute'}} key={card.title} className='card' style={{background: `url(${card.img}) no-repeat center`, backgroundSize: 'cover'}}>
           <div></div>
           <div className='card-footer'>
             {card.title}

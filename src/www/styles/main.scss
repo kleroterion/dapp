@@ -158,6 +158,23 @@ nav.vertical > ul > li {
   align-self: flex-end;
 }
 
+.cards-dispute {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 30px 0;
+}
+
+.cards-dispute-item {
+  width: 400px;
+}
+
+.percent {
+  padding-top: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
 .footer {
   background-color: rgb(33, 33, 33);
   text-align: center;
@@ -167,7 +184,8 @@ nav.vertical > ul > li {
   color: rgba(255, 255, 255, 0.541176);
   width: 100%;
   min-height: 100px;
-  padding-top: 5px;}
+  padding-top: 5px;
+}
 
 .footer h3 {
   padding-top: 20px;

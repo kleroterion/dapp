@@ -41,6 +41,7 @@ const Dispute = () => (
               </div>
             </div>
             <GridCard content={[
+                {'title' : 'Ethereum', 'img' : 'http://dukelong.com/wp-content/uploads/2015/05/Ethereumpic1.png'},
                 {'title' : 'Akasha', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'},
                 {'title' : 'OpenBazzar', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'},
                 {'title' : 'Steemit', 'img' : 'http://www.toprankblog.com/wp-content/uploads/people-focused-b2b-marketing.jpg'}
