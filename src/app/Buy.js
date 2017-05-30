@@ -9,17 +9,9 @@ import IconButton from 'material-ui/IconButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
 import Identicon from './Identicon'
-import Divider from 'material-ui/Divider'
-import Toggle from 'material-ui/Toggle'
 import SideBar from './SideBar'
-import GridCard from './GridCard'
 import Footer from './Footer'
-import config from '../../config'
-//import CourtBuyable from "../../build/contracts/BuyableCourt.json";
 
 import '../www/styles/Kleroterion.scss'
 
